@@ -27,9 +27,10 @@ import java.io.UnsupportedEncodingException;
 public class DeskMateNotificationListener extends NotificationListenerService
 {
 
-    /*
-    These are the package names of the apps. for which we want to
-    listen the notifications
+    /**
+     * @author Shakti Phartiyal
+     * @desc These are the package names of the apps. for which we want to
+     * listen the notifications
     */
     private static final class ApplicationPackageNames {
         public static final String FACEBOOK_PACK_NAME = "com.facebook.katana";
@@ -40,9 +41,10 @@ public class DeskMateNotificationListener extends NotificationListenerService
         public static final String SMS_PACK_NAME = "com.google.android.apps.messaging";
     }
 
-    /*
-    These are the return codes we use in the method which intercepts
-    the notifications, to decide whether we should do something or not
+    /**
+     * @author Shakti Phartiyal
+     * @desc These are the return codes we use in the method which intercepts
+     * the notifications, to decide whether we should do something or not
  */
     public static final class InterceptedNotificationCode {
         public static final int FACEBOOK_CODE = 1;
@@ -145,6 +147,10 @@ public class DeskMateNotificationListener extends NotificationListenerService
 
 
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc Method to publish data to mqtt broker
+     */
     private void publishToMqtt(final String packageName, final String title, final String message)
     {
         final String finalMessage = "{\"p\":\""+packageName+"\", \"t\":\""+title+"\",\"m\":\""+message+"\"}";

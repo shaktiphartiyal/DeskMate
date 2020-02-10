@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity
         startTheService();
     }
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc Method to check if the service is running or else start it
+     */
     public void startTheService()
     {
         if(checkServiceRunning(DeskMateNotificationListener.class) == false)
@@ -62,6 +66,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc Check if notification listener service is running
+     */
     public boolean checkServiceRunning(Class<?> serviceClass){
         ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE))
@@ -75,6 +83,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc initialize controls
+     */
     private void loadControls()
     {
         displayArea = (TextView) findViewById(R.id.displayArea);
@@ -106,6 +118,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc check if settings are stored in shared preferences
+     */
     private void checkForSavedSettings()
     {
         settingsSaved = SharedPreferenceHelper.getSharedPreferenceBoolean(this, "SETTINGS_SAVED", false);
@@ -123,6 +139,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc Method to save settings in shared preferences after validation
+     */
     private void saveConfiguration()
     {
         String inputMqttServer = mqttServer.getText().toString();
@@ -175,6 +195,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc Method to pre populate saved settings in form
+     */
     private void populateSavedSettings()
     {
         mqttServer.setText(SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "MQTT_SERVER", ""));
@@ -185,6 +209,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * @author Shakti Phartiyal
+     * @desc method to check if notifiation permission is granted
+     */
     private boolean isNotificationServiceRunning() {
         ContentResolver contentResolver = getContentResolver();
         String enabledNotificationListeners =
