@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/hk009/android/DeskMate/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
+            "map": [
+                {
+                    "source": "/home/hk009/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/cd545758a3bd16686548c28ba151f998/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                }
+            ]
+        }
+    ]
+}
