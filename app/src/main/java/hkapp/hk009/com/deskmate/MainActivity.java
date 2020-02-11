@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity
     private EditText mqttPubTopic;
     private Button saveSettingsBtn;
     private CheckBox passwordShowCheck;
+    private CheckBox hideContentCheck;
+    private CheckBox showOTPCheck;
+    private EditText displayDuration;
+
+
 
 
 
@@ -97,6 +102,9 @@ public class MainActivity extends AppCompatActivity
         mqttPubTopic = (EditText) findViewById(R.id.mqttPubTopic);
         saveSettingsBtn = (Button) findViewById(R.id.saveSettingBtn);
         passwordShowCheck = (CheckBox) findViewById(R.id.passwordShowCheck);
+        hideContentCheck = (CheckBox) findViewById(R.id.hideContentCheck);
+        showOTPCheck = (CheckBox) findViewById(R.id.showOTPCheck);
+        displayDuration = (EditText) findViewById(R.id.displayDuration);
         saveSettingsBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 saveConfiguration();
@@ -150,6 +158,9 @@ public class MainActivity extends AppCompatActivity
         String inputMqttPassword = mqttPassword.getText().toString();
         String inputMqttPort = mqttPort.getText().toString();
         String inputMqttPubTopic = mqttPubTopic.getText().toString();
+        boolean hideContent = hideContentCheck.isChecked();
+        boolean showOtp = showOTPCheck.isChecked();
+        String displayDurationSeconds = displayDuration.getText().toString();
 
         if(inputMqttServer.equalsIgnoreCase(""))
         {
@@ -182,6 +193,9 @@ public class MainActivity extends AppCompatActivity
         SharedPreferenceHelper.setSharedPreferenceString(getApplicationContext(), "MQTT_PASSWORD", inputMqttPassword);
         SharedPreferenceHelper.setSharedPreferenceString(getApplicationContext(), "MQTT_PORT", inputMqttPort);
         SharedPreferenceHelper.setSharedPreferenceString(getApplicationContext(), "MQTT_PUB_TOPIC", inputMqttPubTopic);
+        SharedPreferenceHelper.setSharedPreferenceBoolean(getApplicationContext(), "HIDE_CONTENT", hideContent);
+        SharedPreferenceHelper.setSharedPreferenceBoolean(getApplicationContext(), "SHOW_OTP", showOtp);
+        SharedPreferenceHelper.setSharedPreferenceString(getApplicationContext(), "DISPLAY_DURATION", displayDurationSeconds);
         SharedPreferenceHelper.setSharedPreferenceBoolean(getApplicationContext(), "SETTINGS_SAVED", true);
         checkForSavedSettings();
         if(settingsSaved)
@@ -206,6 +220,9 @@ public class MainActivity extends AppCompatActivity
         mqttPassword.setText(SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "MQTT_PASSWORD", ""));
         mqttPort.setText(SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "MQTT_PORT", ""));
         mqttPubTopic.setText(SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "MQTT_PUB_TOPIC", ""));
+        hideContentCheck.setChecked(SharedPreferenceHelper.getSharedPreferenceBoolean(getApplicationContext(), "HIDE_CONTENT", false));
+        showOTPCheck.setChecked(SharedPreferenceHelper.getSharedPreferenceBoolean(getApplicationContext(), "SHOW_OTP", false));
+        displayDuration.setText(SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "DISPLAY_DURATION", "5"));
     }
 
 

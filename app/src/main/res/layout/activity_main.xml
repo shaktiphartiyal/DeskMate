@@ -82,6 +82,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mqttPort"/>
 
+        <TextView
+            android:id="@+id/displayDurationLabel"
+            android:layout_width="0dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Display Duration(seconds, default 5)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/showOTPCheck"/>
+
         <EditText
             android:id="@+id/mqttServer"
             android:layout_width="0dp"
@@ -151,6 +164,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pubTopicLabel"/>
 
+        <EditText
+            android:id="@+id/displayDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/displayDurationLabel"/>
+
         <Button
             android:id="@+id/saveSettingBtn"
             android:layout_width="wrap_content"
@@ -162,8 +189,9 @@
             android:text="Save Settings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mqttPubTopic"/>
+            app:layout_constraintTop_toBottomOf="@+id/displayDuration"/>
 
         <CheckBox
             android:id="@+id/passwordShowCheck"
@@ -176,6 +204,26 @@
             app:layout_constraintBottom_toTopOf="@+id/mqttPassword"
             app:layout_constraintStart_toEndOf="@+id/passwordLabel"
             app:layout_constraintTop_toBottomOf="@+id/mqttUser"/>
+
+        <CheckBox
+            android:id="@+id/hideContentCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Hide content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mqttPubTopic"/>
+
+        <CheckBox
+            android:id="@+id/showOTPCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Show OTP"
+            app:layout_constraintStart_toEndOf="@+id/hideContentCheck"
+            app:layout_constraintTop_toBottomOf="@+id/mqttPubTopic"/>
 
 
     </android.support.constraint.ConstraintLayout>

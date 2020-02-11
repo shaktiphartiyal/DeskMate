@@ -151,9 +151,30 @@ public class DeskMateNotificationListener extends NotificationListenerService
      * @author Shakti Phartiyal
      * @desc Method to publish data to mqtt broker
      */
-    private void publishToMqtt(final String packageName, final String title, final String message)
+    private void publishToMqtt(final String packageName, final String title, String message)
     {
-        final String finalMessage = "{\"p\":\""+packageName+"\", \"t\":\""+title+"\",\"m\":\""+message+"\"}";
+        boolean hideNotificationContent = SharedPreferenceHelper.getSharedPreferenceBoolean(getApplicationContext(), "HIDE_CONTENT", false);
+        boolean showOTP = SharedPreferenceHelper.getSharedPreferenceBoolean(getApplicationContext(), "SHOW_OTP", false);
+        String displayDuration = SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "DISPLAY_DURATION", "5");
+        int displayDurationNumber = Integer.parseInt(displayDuration);
+
+        String originalMessage = message;
+
+        if(hideNotificationContent == true)
+        {
+            if(packageName.equalsIgnoreCase("whatsapp") || packageName.equalsIgnoreCase("facebook") || packageName.equalsIgnoreCase("instagram") || packageName.equalsIgnoreCase("sms"))
+            message = "MESSAGE RECEIVED - CONTENTS HIDDEN";
+        }
+
+        if(showOTP == true)
+        {
+            if(originalMessage.toLowerCase().indexOf("one time password") !=-1 || originalMessage.toLowerCase().indexOf("otp") !=-1 || originalMessage.toLowerCase().indexOf("code is") !=-1)
+            message = originalMessage;
+        }
+
+
+
+        final String finalMessage = "{\"p\":\""+packageName+"\", \"t\":\""+title+"\",\"m\":\""+message+"\", \"dd\": "+displayDurationNumber+"}";
         String mqttServerUrl = SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "MQTT_SERVER", "");
         String mqttPort = SharedPreferenceHelper.getSharedPreferenceString(getApplicationContext(), "MQTT_PORT", "");
         if(mqttServerUrl.equals("") || mqttPort.equals(""))
@@ -198,6 +219,10 @@ public class DeskMateNotificationListener extends NotificationListenerService
                 }
             });
         } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
     }
